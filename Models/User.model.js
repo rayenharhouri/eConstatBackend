@@ -1,6 +1,12 @@
-import mongoose, {mongo, Schema} from 'mongoose'
+import bodyParser from 'body-parser'
+import express from 'express'
+import mongoose from 'mongoose'
+const app = express()
+app.use(bodyParser.urlencoded({ extended: false}))
+app.use(bodyParser.json())
+const {Schema , model} = mongoose
 
-const userSchema = new Schema(
+const userSchema = mongoose.Schema(
     {
         name: {
             type: String,
@@ -24,6 +30,14 @@ const userSchema = new Schema(
         },
         number : {
             type: Number,
+            required: true
+        },
+        password:{
+            type: String,
+            required: true
+        },
+        email: {
+            type: String,
             required: true
         },
     }, 

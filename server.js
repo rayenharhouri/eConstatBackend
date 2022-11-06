@@ -2,9 +2,10 @@ import express from 'express'
 import mongoose from 'mongoose'
 import morgan from 'morgan'
 import cors from 'cors'
+import UserRoute from './Routes/User.route.js'
 
 const app = express()
-const database = "XXXXXXXXXXXXX" //weeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeey
+const database = "eConstat" 
 const port = process.env.port || 3000
 const hostname = '127.0.0.1'
 
@@ -21,6 +22,8 @@ mongoose
 app.use(cors())
 app.use(morgan("dev"))
 app.use(express.json())
+
+app.use("/user", UserRoute)
 
 //Pour les images
 app.use(express.urlencoded({ extended: true }))

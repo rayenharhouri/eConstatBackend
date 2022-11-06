@@ -1,0 +1,40 @@
+GET http://localhost:3000/
+
+###
+POST http://localhost:3000/user/signUp
+Content-Type: application/json
+
+{
+    "name": "Rayen",
+    "lastName":"something",
+    "email":"Rayen@rayen.com",
+    "password":"something",
+    "adress":"something",
+    "driverLicense":"something",
+    "delevredOn": "2020-03-09",
+    "number": 12345678
+}
+###
+POST http://localhost:3000/user/login
+Content-Type: application/json
+
+{
+    "email" : "Rayen@rayen.com",
+    "password" : "something"
+}
+###
+PATCH http://localhost:3000/user/updateUser
+Content-Type: application/json
+
+{
+    "driverLicence" : "something",
+    "name" : "Rayen"
+}
+###
+POST http://localhost:3000/user/forgetPassword
+Content-Type: application/json
+
+{
+    
+    "email" : "rayen@rayen.com"
+}
