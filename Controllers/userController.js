@@ -1,138 +1,223 @@
 import User from '../Models/User.model.js'
 import Token from '../Models/TokenJwt.js'
-import bcrypt from "bcrypt"
-import crypto from "crypto"
-import jwt from "jsonwebtoken"
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 import * as dotenv from 'dotenv'
+import * as os from 'os'
+import nodemailer from 'nodemailer'
+import hbs from 'nodemailer-express-handlebars'
+import * as path from 'path'
 
-
-
-export async function LogIn(req,res) {
-    try {
-        const {email , password} = req.body
-        if (! (email && password)){
-            res.status(400).send("Required Input")
-        }
-        const user = await User.findOne({email : email.toLowerCase()})
-        if (user && (await bcrypt.compare(password, user.password))) {
-            dotenv.config()
-            let token = new Token({
-                userId: user._id,
-                token: jwt.sign({email: user.email,password: user.password},process.env.ACCESS_TOKEN_SECRET,{expiresIn: '1H'}),
-              })
-       
-        res.status(200).json({message : "login avec succeés",user,token}) 
-        } 
-  
-    }catch(err) {
-        console.log(err);
+export async function LogIn(req, res) {
+  try {
+    const { email, password } = req.body
+    if (!(email && password)) {
+      res.status(400).send('Required Input')
     }
+    const user = await User.findOne({ email: email.toLowerCase() })
+    if (user && (await bcrypt.compare(password, user.password))) {
+      dotenv.config()
+      let token = new Token({
+        userId: user._id,
+        token: jwt.sign(
+          { email: user.email, password: user.password },
+          process.env.ACCESS_TOKEN_SECRET,
+          { expiresIn: '1H' },
+        ),
+      })
+
+      res.status(200).json({ message: 'login avec succeés', user, token })
+    }
+  } catch (err) {
+    console.log(err)
+  }
 }
 
-export async function SignUp(req,res) {
-    try {
-        //Get User Input
-        const { name, lastName , email , password , adress , driverLicense , delevredOn , number } = req.body
-        
-        //Validate user input
-        if (!(name && lastName && email && password && adress && driverLicense && delevredOn && number )) {
-            res.status(400).send("Required Inputs")
-        }
+export async function SignUp(req, res) {
+  const emailValid = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
+  try {
+    //Get User Input
+    const {
+      name,
+      lastName,
+      email,
+      password,
+      adress,
+      driverLicense,
+      delevredOn,
+      number,
+    } = req.body
 
-        //checking the existance of user 
-        
-        const existUser = await User.findOne({email})
-
-        if (existUser) {
-            return res.status(409).send("User Already exist.LogIn")
-        }
-        
-
-        //Encrypt user Password
-        const encryptedPassword = await bcrypt.hash(password, 10)
-
-        //create user in our database
-        const user = await User.create({
-            name,
-            lastName,
-            email: email.toLowerCase(),
-            password: encryptedPassword, 
-            adress,
-            driverLicense,
-            delevredOn,
-            number,
-        })
-
-        res.send(user)
+    //Validate user input
+    if (
+      !(
+        name &&
+        lastName &&
+        email &&
+        password &&
+        adress &&
+        driverLicense &&
+        delevredOn &&
+        number
+      )
+    ) {
+      res.status(400).send('Required Inputs')
     }
-    catch(err){
-        console.log(err)
+    if (emailValid.test(email) == false) {
+      res.status(400).send('email invalid')
+      return
     }
-}
 
-export async function UpdateProfile(req,res) {
-    const driverLicense = req.params.driverLicense
-    var user = await User.findOneAndUpdate({
-        driverLicense: driverLicense,
-        name: req.body.name
+    //checking the existance of user
+
+    const existUser = await User.findOne({ email })
+
+    if (existUser) {
+      return res.status(409).send('User Already exist.LogIn')
+    }
+
+    //Encrypt user Password
+    const encryptedPassword = await bcrypt.hash(password, 10)
+
+    //create user in our database
+    const user = await User.create({
+      name,
+      lastName,
+      email: email.toLowerCase(),
+      password: encryptedPassword,
+      adress,
+      driverLicense,
+      delevredOn,
+      number,
     })
-    res.status(200).json(user)
+    res.send(user)
+  } catch (err) {
+    console.log(err)
+  }
 }
 
-export async function ForgetPasswordTokenGenrator(req,res,next) {
-    const {email} = req.body
-    //existance of user in database
-    const userEmail = await User.findOne({ "email": email })
-    if (email !== userEmail.email){
-        res.status(400).json({email})
-        return
-    } 
-    dotenv.config()
-    const token = jwt.sign(userEmail.email,process.env.ACCESS_TOKEN_SECRET)
-    const link = `http://localhost:3000/user/forgetPassword/${userEmail._id}/${token}`
-    console.log(link)//sending email here to User
+export async function UpdateProfile(req, res) {
+  const driverLicense = req.params.driverLicense
+  var user = await User.findOneAndUpdate({
+    driverLicense: driverLicense,
+    name: req.body.name,
+  })
+  res.status(200).json(user)
 }
 
-export async function ForgetPasswordReciver(req,res,next) {
-    const {id, token} = req.params
-    //check if this id exist in DB
-    const user = await User.findOne({ "_id": id })
-    console.log("lennnnnnnnnnnnnaaaaaaaaaaa")
-    console.log(user._id)
-    console.log(id)
-    if(!(user._id.equals(id))) {
-        res.send('invalid Id...')
-        return
-    }
-    //WE HAVE A VALID ID AND WE HAVE A VALID USER WITH THIS ID
-    dotenv.config()
-    try{
-        const payload = jwt.verify(token,process.env.ACCESS_TOKEN_SECRET)
-        res.send(user.email)    
-    }
-    catch(err) {
-        res.send(err)
-    }
+export async function sendConfirmationEmail(req, res) {
+  //finding the user mail
+  const user = await User.findOne({ email: req.body.email })
+  //generating token
+  if (user) {
+    let token = new Token({
+      userId: user._id,
+      token: jwt.sign(
+        { user },
+        process.env.ACCESS_TOKEN_SECRET,
+        { expiresIn: '1H' },
+      ),
+    })
+    //sending mail
+    await doSendConfirmationEmail(req.body.email, token.token)
+
+    res.status(200).send({
+      message: "L'email de confirmation a été envoyé a " + user.email,
+    })
+  } else {
+    res.status(404).send({ message: 'User innexistant' })
+  }
 }
 
-export async function ForgetPasswordChanger(req,res,next) {
-    const {id, token} = req.params
-    const {password,password2} = req.body
-    //check if this id exist in DB
-    const user = await User.findOne({ "email": email })
-   
-    if(id !== user._id){
-        res.send('invalid Id...')
-        return
+async function doSendConfirmationEmail(email, token) {
+  let port = process.env.PORT || 3000
+ 
+  sendEmail({
+    from: process.env.eConstat_Mail,
+    to: email,
+    subject: 'Confirm your email',
+    template: 'email' ,
+    // html:
+    //   "<h3>Please confirm your email using this </h3><a href='" +
+    //   'http' +
+    //   '://' +
+    //   '127.0.0.1' +
+    //   ':' +
+    //   port +
+    //   '/user/confirmation/' +
+    //   token +
+    //   "'>Link</a>",
+    context: {
+        port : port,
+        token : token
     }
-    dotenv.config()
-    try{
-        const payload = jwt.verify(token,process.env.ACCESS_TOKEN_SECRET)
-        //validate password & password2 
-        user.password = password
-        res.send(user)     
+  })
+}
+
+function sendEmail(mailOptions) {
+    let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: process.env.eConstat_Mail,
+          pass: process.env.eConstat_Password,
+        },
+      })
+      const handlebarOptions = {
+        viewEngine: {
+          extName: ".html",
+          partialsDir: path.resolve('./views'),
+          defaultLayout: false,
+        },
+        viewPath: path.resolve('./views'),
+        extName: ".html",
+      }
+      transporter.use('compile', hbs(handlebarOptions))
+    
+      transporter.verify(function (error, success) {
+        if (error) {
+          console.log(error)
+          console.log('Server not ready')
+        } else {
+          console.log('Server is ready to take our messages')
+        }
+      })
+    
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          console.log(error)
+        } else {
+          console.log('Email sent: ' + info.response)
+        }
+      })
+}
+
+export async function confirmation(req, res) {
+  if (req.params.token) {
+    try {
+        let token = jwt.verify(req.params.token, process.env.ACCESS_TOKEN_SECRET)
+        console.log(token.user._id);
+    } catch (e) {
+      return res.status(200).json({"error" : "erreur"})
     }
-    catch(err) {
-        res.send(err)
+  } else {
+    return res.status(200).json({"error" : "erreur"})
+  }
+  let token = jwt.verify(req.params.token, process.env.ACCESS_TOKEN_SECRET)
+  console.log(token);
+  User.findById(token.user._id, function (err, user) {
+    if (!user) {
+      return res.status(200).json({"error" : "user does Not Exist"})
+    } else if (user.verified) {
+      return res.status(200).json({"error" : "user alerady verified"})
+    } else {
+      user.verified = true
+      user.save(function (err) {
+        if (err) {
+          return res.status(400).json({"error" : "erreur"})
+        } else {
+          return res.status(200).json({"success" : "user verified"})
+        }
+      })
     }
+  })
 }

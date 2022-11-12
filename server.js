@@ -4,10 +4,21 @@ import morgan from 'morgan'
 import cors from 'cors'
 import UserRoute from './Routes/User.route.js'
 
+
 const app = express()
 const database = "eConstat" 
 const port = process.env.port || 3000
 const hostname = '127.0.0.1'
+import * as dotenv from 'dotenv' ;
+dotenv.config()
+
+
+app.use(express.json())
+
+
+
+
+
 
 mongoose.set('debug', true)
 mongoose.Promise = global.Promise
@@ -21,7 +32,7 @@ mongoose
     })
 app.use(cors())
 app.use(morgan("dev"))
-app.use(express.json())
+
 
 app.use("/user", UserRoute)
 

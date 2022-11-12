@@ -6,8 +6,7 @@ const router = express.Router()
 router.post('/signUp',UserController.SignUp)
 router.post('/login',UserController.LogIn)
 router.route('/updateUser/:dirverLicence').patch(UserController.UpdateProfile)
-router.post('/forgetPassword',UserController.ForgetPasswordTokenGenrator)
-router.get('/forgetPassword/:id/:token',UserController.ForgetPasswordReciver)
-router.post('/forgetPassword/:id/:token',UserController.ForgetPasswordChanger)
+router.post("/send-confirmation-email", UserController.sendConfirmationEmail)
+router.get("/confirmation/:token", UserController.confirmation)
 
 export default router

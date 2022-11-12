@@ -5,12 +5,12 @@ POST http://localhost:3000/user/signUp
 Content-Type: application/json
 
 {
-    "name": "Rayen",
-    "lastName":"something",
-    "email":"Rayen@rayen.com",
-    "password":"something",
-    "adress":"something",
-    "driverLicense":"something",
+    "name": "mezen",
+    "lastName":"mejri",
+    "email":"mezen.bayounes@esprit.tn",
+    "password":"123321123",
+    "adress":"ST",
+    "driverLicense":"147852369",
     "delevredOn": "2020-03-09",
     "number": 12345678
 }
@@ -19,7 +19,7 @@ POST http://localhost:3000/user/login
 Content-Type: application/json
 
 {
-    "email" : "Rayen@rayen.com",
+    "email" : "rayenharhouri99@gmail.com",
     "password" : "something"
 }
 ###
@@ -37,4 +37,16 @@ Content-Type: application/json
 {
     
     "email" : "rayen@rayen.com"
+}
+
+
+
+
+
+###
+POST http://localhost:3000/user/send-confirmation-email
+Content-Type: application/json
+
+{
+    "email" : "rayenharhouri99@gmail.com"
 }

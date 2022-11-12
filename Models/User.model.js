@@ -22,6 +22,7 @@ const userSchema = mongoose.Schema(
         },
         driverLicense: {
             type: String,
+            minlengh: 8,
             required: true,
         },
         delevredOn: {
@@ -40,6 +41,10 @@ const userSchema = mongoose.Schema(
             type: String,
             required: true
         },
+        verified: {
+            type : Boolean,
+            default : false
+        }
     }, 
         {
             timestamps : true
