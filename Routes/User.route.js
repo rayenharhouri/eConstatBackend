@@ -8,5 +8,7 @@ router.post('/login',UserController.LogIn)
 router.route('/updateUser/:dirverLicence').patch(UserController.UpdateProfile)
 router.post("/send-confirmation-email", UserController.sendConfirmationEmail)
 router.get("/confirmation/:token", UserController.confirmation)
+router.post('/forgotPassword',UserController.forgotPassword)
+router.post("/confirmationOtp",UserController.confirmationOTP)
 
 export default router

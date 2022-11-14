@@ -5,11 +5,11 @@ POST http://localhost:3000/user/signUp
 Content-Type: application/json
 
 {
-    "name": "mezen",
-    "lastName":"mejri",
-    "email":"mezen.bayounes@esprit.tn",
-    "password":"123321123",
-    "adress":"ST",
+    "name": "Rayen",
+    "lastName":"Harhouri",
+    "email":"rayenharhouri99@gmail.com",
+    "password":"rayen123",
+    "adress":"Mnihla",
     "driverLicense":"147852369",
     "delevredOn": "2020-03-09",
     "number": 12345678
@@ -49,4 +49,20 @@ Content-Type: application/json
 
 {
     "email" : "rayenharhouri99@gmail.com"
+}
+
+###
+POST http://localhost:3000/user/forgotPassword
+Content-Type: application/json
+
+{
+    "email" : "rayenharhouri99@gmail.com"
+}
+
+###
+POST http://localhost:3000/user/confirmationOtp
+Content-Type: application/json
+
+{
+    "otp" : "2103"
 }

@@ -44,6 +44,10 @@ const userSchema = mongoose.Schema(
         verified: {
             type : Boolean,
             default : false
+        },
+        otp : {
+            type : Number,
+            default : '8989'
         }
     }, 
         {

@@ -7,6 +7,7 @@ import * as os from 'os'
 import nodemailer from 'nodemailer'
 import hbs from 'nodemailer-express-handlebars'
 import * as path from 'path'
+import otpGenerator from 'otp-generator'
 
 export async function LogIn(req, res) {
   try {
@@ -107,7 +108,7 @@ export async function UpdateProfile(req, res) {
 
 export async function sendConfirmationEmail(req, res) {
   //finding the user mail
-  const user = await User.findOne({ email: req.body.email })
+  const user = await User.findOne({ email: req.body.email.toLowerCase() })
   //generating token
   if (user) {
     let token = new Token({
@@ -137,16 +138,6 @@ async function doSendConfirmationEmail(email, token) {
     to: email,
     subject: 'Confirm your email',
     template: 'email' ,
-    // html:
-    //   "<h3>Please confirm your email using this </h3><a href='" +
-    //   'http' +
-    //   '://' +
-    //   '127.0.0.1' +
-    //   ':' +
-    //   port +
-    //   '/user/confirmation/' +
-    //   token +
-    //   "'>Link</a>",
     context: {
         port : port,
         token : token
@@ -221,3 +212,87 @@ export async function confirmation(req, res) {
     }
   })
 }
+
+// exports.delete = async (req, res) => {
+//   let user = await User.findById(req.body._id)
+//   if (user) {
+//     await user.remove()
+//     return res.send({ message: "Users" + user._id + " have been deleted" })
+//   } else {
+//     return res.status(404).send({ message: "User does not exist" })
+//   }
+// }
+
+
+//FORGET PASSWORD LOGIC
+export async function forgotPassword (req, res) {
+  let OTP = otpGenerator.generate(4,{upperCaseAlphabets:false,specialChars:false,digits:true,lowerCaseAlphabets:false})
+  const user = await User.findOneAndUpdate({ email: req.body.email,otp: OTP})
+  if (user) {
+    await sendOTP(req.body.email)
+    res.status(200).send({
+      message: "L'email de reinitialisation a été envoyé a " + user.email,
+    })
+  } else {
+    res.status(404).send({ message: "User innexistant" })
+  }
+}
+async function sendOTP(email) {
+  const user = await User.findOne({ email: email })
+  sendEmailOTP({
+    from: process.env.eConstat_Mail,
+    to: email,
+    subject: "Password reset",
+    template: 'otp',
+    context: {
+      OTP : user.otp
+    }
+  })
+}
+function sendEmailOTP(mailOptions) {
+  let transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.eConstat_Mail,
+      pass: process.env.eConstat_Password,
+    },
+  })
+  const handlebarOptions = {
+    viewEngine: {
+      extName: ".html",
+      partialsDir: path.resolve('./views'),
+      defaultLayout: false,
+    },
+    viewPath: path.resolve('./views'),
+    extName: ".html",
+  }
+  transporter.use('compile', hbs(handlebarOptions))
+  transporter.verify(function (error, success) {
+    if (error) {
+      console.log(error)
+      console.log("Server not ready")
+    } else {
+      console.log("Server is ready to take our messages")
+    }
+  })
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error)
+    } else {
+      console.log("Email sent: " + info.response)
+    }
+  })
+}
+
+export async function confirmationOTP(req,res) {
+    const user = await User.findOne({ otp: req.body.otp })
+      if (user) {
+          res.status(200).json({"message" : "success"})
+      } else {
+        res.status(400).json({"error": "error"})
+      }
+}
+
+//FORGET PASSWORD LOGIC ENDS HERE
+
