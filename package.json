@@ -28,6 +28,8 @@
     "os": "^0.1.2",
     "otp-generator": "^4.0.0",
     "path": "^0.12.7",
+    "swagger-jsdoc": "^6.0.0",
+    "swagger-ui-express": "^4.6.0",
     "twig": "^1.15.4",
     "two-step-auth": "^1.1.2"
   }

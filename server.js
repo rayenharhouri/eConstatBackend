@@ -3,9 +3,12 @@ import mongoose from 'mongoose'
 import morgan from 'morgan'
 import cors from 'cors'
 import UserRoute from './Routes/User.route.js'
+import swaggerJSDoc from 'swagger-jsdoc'
+import swaggerUi from 'swagger-ui-express'
 
 
 const app = express()
+
 const database = "eConstat" 
 const port = process.env.port || 3000
 const hostname = '127.0.0.1'
@@ -14,7 +17,6 @@ dotenv.config()
 
 
 app.use(express.json())
-
 
 
 
@@ -32,6 +34,29 @@ mongoose
     })
 app.use(cors())
 app.use(morgan("dev"))
+
+
+const options={
+    definition:{
+        openapi:'3.0.0',
+        info : {
+            title:'e-Constat Project',
+            version:'1.0.0'
+        },
+        servers:[
+            {
+               url: 'http://localhost:3000/'
+            }
+        ]
+    },
+    apis:['./mongodb.js']
+    
+    }
+    
+    const swaggerSpec=swaggerJSDoc(options)
+    app.use('/api-docs',swaggerUi.serve,swaggerUi.setup(swaggerSpec))
+
+
 
 
 app.use("/user", UserRoute)
