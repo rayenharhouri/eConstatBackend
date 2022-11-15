@@ -15,7 +15,7 @@ export async function LogIn(req, res) {
     if (!(email && password)) {
       res.status(400).send('Required Input')
     }
-    const user = await User.findOne({ email: email.toLowerCase() })
+    const user = await User.findOne({ email: email })
     if (user && (await bcrypt.compare(password, user.password))) {
       dotenv.config()
       let token = new Token({
@@ -28,8 +28,11 @@ export async function LogIn(req, res) {
       })
 
       res.status(200).json({ message: 'login avec succeés', user, token })
+    } else {
+      res.status(400).json({erreur : "erreur"})
     }
   } catch (err) {
+    res.status(400).json({json:"erreur"})
     console.log(err)
   }
 }
