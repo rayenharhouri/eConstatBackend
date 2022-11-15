@@ -2,13 +2,6 @@
 # Welcome To eConstat!
 ![Made with nodeJs](https://img.shields.io/badge/Made%20With-NodeJS-g?style=flat-square)
 
-```mermaid
-graph LR
-A[Says] --Regarder--> B[Thinks]
-B --Application--> C[Feels]
-C --Heureux--> D[Does]
-D --Partager--> E
-```
 
 # Technologies
 this project is made with :
@@ -68,6 +61,28 @@ Node.js est une plateforme logicielle libre en JavaScript, orientée vers les ap
 
  - Nodemailer :  designed for sending emails.
 
+
+##Besoins fonctionnels
+
+```mermaid
+graph LR
+A[SPLASH SCREEN] --> B[SIGN IN/SIGN UP]
+B --> C[SIGN UP]
+B --> D[SIGN IN]
+D --> E[FORGET PSW]
+D --> F[HOME]
+F --> G[ACCIDENT REPORT]
+F --> H[My Cars]
+F --> I[History]
+G --> J[Fill Constat]
+H --> Z[Car management]
+I --> w[Consult constat]
+C --> K[HAVE AN ACCOUNT]
+C --> L[CREATE CPT]
+L --> M[USER DETAILS]
+M --> N[VERIFICATION]
+N --> D
+```
 
 
 
