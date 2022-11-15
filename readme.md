@@ -2,7 +2,13 @@
 # Welcome To eConstat!
 ![Made with nodeJs](https://img.shields.io/badge/Made%20With-NodeJS-g?style=flat-square)
 
-
+```mermaid
+graph LR
+A[Says] --Regarder--> B[Thinks]
+B --Application--> C[Feels]
+C --Heureux--> D[Does]
+D --Partager--> E
+```
 
 # Technologies
 this project is made with :
