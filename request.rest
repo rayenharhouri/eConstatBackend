@@ -66,3 +66,13 @@ Content-Type: application/json
 {
     "otp" : "2103"
 }
+
+###
+PUT http://localhost:3000/user/updatePassword
+Content-Type: application/json
+
+{
+    "email" : "rayenharhouri99@gmail.com",
+    "newPassword" : "rayen123",
+    "newPasswordConfirm" : "rayen123"
+}

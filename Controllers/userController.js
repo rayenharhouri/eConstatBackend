@@ -296,3 +296,24 @@ export async function confirmationOTP(req,res) {
 
 //FORGET PASSWORD LOGIC ENDS HERE
 
+export async function updatePassword(req, res) {
+  const { email ,newPasswordConfirm,newPassword } = req.body
+
+  if (newPassword==newPasswordConfirm) {
+    let newPasswordEncrypted = await bcrypt.hash(newPassword, 10)
+
+    let user = await User.findOneAndUpdate(
+      { email: email },
+      {
+        $set: {
+          password: newPasswordEncrypted,
+        },
+      }
+    )
+
+    return res.send({ message: "Password updated successfully", user })
+  } else {
+    return res.status(403).send({ message: "Password should match" })
+  }
+}
+

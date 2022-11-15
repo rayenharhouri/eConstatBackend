@@ -10,5 +10,6 @@ router.post("/send-confirmation-email", UserController.sendConfirmationEmail)
 router.get("/confirmation/:token", UserController.confirmation)
 router.post('/forgotPassword',UserController.forgotPassword)
 router.post("/confirmationOtp",UserController.confirmationOTP)
+router.put("/updatePassword", UserController.updatePassword)
 
 export default router

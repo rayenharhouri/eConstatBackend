@@ -50,7 +50,6 @@ const options={
         ]
     },
     apis:['./mongodb.js']
-    
     }
     
     const swaggerSpec=swaggerJSDoc(options)
