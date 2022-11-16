@@ -31,12 +31,12 @@ Content-Type: application/json
     "name" : "Rayen"
 }
 ###
-POST http://localhost:3000/user/forgetPassword
+POST http://localhost:3000/user/forgotPassword
 Content-Type: application/json
 
 {
     
-    "email" : "rayen@rayen.com"
+    "email" : "rayenharhouri99@gmail.com"
 }
 
 

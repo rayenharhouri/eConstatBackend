@@ -229,12 +229,15 @@ export async function confirmation(req, res) {
 
 //FORGET PASSWORD LOGIC
 export async function forgotPassword (req, res) {
-  let OTP = otpGenerator.generate(4,{upperCaseAlphabets:false,specialChars:false,digits:true,lowerCaseAlphabets:false})
-  const user = await User.findOneAndUpdate({ email: req.body.email,otp: OTP})
-  if (user) {
+  const {email} = req.body
+  const isExisting = await User.findOne({email})
+  console.log(isExisting)
+  if (isExisting) {
+    let OTP = otpGenerator.generate(4,{upperCaseAlphabets:false,specialChars:false,digits:true,lowerCaseAlphabets:false})
+    const user = await User.findOneAndUpdate({email: isExisting.email,otp: OTP})
     await sendOTP(req.body.email)
     res.status(200).send({
-      message: "L'email de reinitialisation a été envoyé a " + user.email,
+      message: "L'email de reinitialisation a été envoyé a " + isExisting.email,
     })
   } else {
     res.status(404).send({ message: "User innexistant" })
@@ -242,15 +245,17 @@ export async function forgotPassword (req, res) {
 }
 async function sendOTP(email) {
   const user = await User.findOne({ email: email })
-  sendEmailOTP({
-    from: process.env.eConstat_Mail,
-    to: email,
-    subject: "Password reset",
-    template: 'otp',
-    context: {
-      OTP : user.otp
-    }
-  })
+    sendEmailOTP({
+      from: process.env.eConstat_Mail,
+      to: email,
+      subject: "Password reset",
+      template: 'otp',
+      context: {
+        OTP : user.otp
+      }
+    })
+  
+
 }
 function sendEmailOTP(mailOptions) {
   let transporter = nodemailer.createTransport({
@@ -313,8 +318,7 @@ export async function updatePassword(req, res) {
         },
       }
     )
-
-    return res.send({ message: "Password updated successfully", user })
+    return res.status(200).send({ message: "Password updated successfully", user })
   } else {
     return res.status(403).send({ message: "Password should match" })
   }
