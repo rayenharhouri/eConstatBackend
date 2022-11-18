@@ -21,13 +21,14 @@ export async function LogIn(req, res) {
       let token = new Token({
         userId: user._id,
         token: jwt.sign(
-          { email: user.email, password: user.password },
+          { user },
           process.env.ACCESS_TOKEN_SECRET,
           { expiresIn: '1H' },
         ),
       })
 
       res.status(200).json({ message: 'login avec succeés', user, token })
+     
     } else {
       res.status(400).json({erreur : "erreur"})
     }
@@ -186,9 +187,11 @@ function sendEmail(mailOptions) {
 }
 
 export async function confirmation(req, res) {
+  console.log(req.params.token);
   if (req.params.token) {
     try {
         let token = jwt.verify(req.params.token, process.env.ACCESS_TOKEN_SECRET)
+        console.log("ghefsfsdfdsf");
         console.log(token.user._id);
     } catch (e) {
       return res.status(200).json({"error" : "erreur"})
@@ -322,5 +325,22 @@ export async function updatePassword(req, res) {
   } else {
     return res.status(403).send({ message: "Password should match" })
   }
+}
+
+export async function userProfil(req,res) {
+  var token = req.body.token
+  console.log(token);
+  if (token) {
+    try {
+        let Token = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
+        console.log(Token.user);
+        res.status(200).send(Token)
+    } catch (e) {
+      return res.status(400).json({"error1" : e})
+    }
+  } else {
+    return res.status(400).json({"error2" : "erreur2"})
+  }
+
 }
 
