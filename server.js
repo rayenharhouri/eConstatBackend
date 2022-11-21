@@ -5,8 +5,9 @@ import cors from 'cors'
 import UserRoute from './Routes/User.route.js'
 import swaggerJSDoc from 'swagger-jsdoc'
 import swaggerUi from 'swagger-ui-express'
-
-
+import passport from 'passport'
+import session from 'express-session'
+import './auth/auth.js'
 const app = express()
 
 const database = "eConstat" 
@@ -49,7 +50,7 @@ const options={
             }
         ]
     },
-    apis:['./mongodb.js']
+    apis:['./Routes/User.route.js']
     }
     
     const swaggerSpec=swaggerJSDoc(options)
@@ -66,3 +67,47 @@ app.use(express.urlencoded({ extended: true }))
 app.listen(port, hostname, () => {
     console.log(`Server running at https://${hostname}:${port}/`);
 });
+
+
+///////////////////////////////////////google auth
+
+app.use(session({ secret: 'cats', resave: false, saveUninitialized: true }));
+
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.get('/', (req, res) => {
+    res.send('<a href="/auth/google">Authenticate with Google</a>');
+  });
+
+
+function isLoggedIn(req, res, next) {
+    req.user ? next() : res.sendStatus(401);
+  }
+
+  app.get('/auth/google',
+  passport.authenticate('google', { scope: [ 'email', 'profile' ] }
+));
+
+app.get( '/auth/google/callback',
+  passport.authenticate( 'google', {
+    successRedirect: '/protected',
+    failureRedirect: '/auth/google/failure'
+  })
+);
+
+
+app.get('/protected', isLoggedIn, (req, res) => {
+    res.send(`Hello ${req.user.displayName}`);
+  });
+
+  app.get('/logout', (req, res) => {
+    req.logout();
+    req.session.destroy();
+    res.send('Goodbye!');
+  });
+
+  app.get('/auth/google/failure', (req, res) => {
+    res.send('Failed to authenticate..');
+  });

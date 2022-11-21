@@ -19,24 +19,24 @@ POST http://localhost:3000/user/login
 Content-Type: application/json
 
 {
-    "email" : "rayenharhouri99@gmail.com",
-    "password" : "something"
+    "email" : "mezenbay@gmail.com",
+    "password" : "test"
 }
 ###
 PATCH http://localhost:3000/user/updateUser
 Content-Type: application/json
 
 {
-    "driverLicence" : "something",
-    "name" : "Rayen"
+    "driverLicence" : "F23322443",
+    "name" : "mezen"
 }
 ###
-POST http://localhost:3000/user/forgetPassword
+POST http://localhost:3000/user/forgotPassword
 Content-Type: application/json
 
 {
     
-    "email" : "rayen@rayen.com"
+    "email" : "rayenharhouri99@gmail.com"
 }
 
 
@@ -76,3 +76,14 @@ Content-Type: application/json
     "newPassword" : "rayen123",
     "newPasswordConfirm" : "rayen123"
 }
+###
+POST http://localhost:3000/user/userProfil
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzNzc5ZGJlZDkxZGE2NGIxZDhmYjRkYSIsIm5hbWUiOiJyYXllbiIsImxhc3ROYW1lIjoiaHJhcmgiLCJhZHJlc3MiOiJhemVhemVheiIsImRyaXZlckxpY2Vuc2UiOiIxMjM1NjQiLCJkZWxldnJlZE9uIjoiMjAyMi0xMS0xOFQxNDo1ODo0OC4wMDBaIiwibnVtYmVyIjo3NDU4LCJwYXNzd29yZCI6IiQyYiQxMCRERk1oektLRVNONjg3RHF4V0laWncuSlliSGpZUjlCTkdRMVpZUEZUNTZ6ZkloS3NoOG0vdSIsImVtYWlsIjoicmF5ZW5oYXJob3VyaTk5QGdtYWlsLmNvbSIsInZlcmlmaWVkIjp0cnVlLCJvdHAiOjg5ODksImNyZWF0ZWRBdCI6IjIwMjItMTEtMThUMTQ6NTk6MTAuNTIyWiIsInVwZGF0ZWRBdCI6IjIwMjItMTEtMThUMTQ6NTk6MzguMTE0WiIsIl9fdiI6MH0sImlhdCI6MTY2ODc4NDY4NiwiZXhwIjoxNjY4Nzg4Mjg2fQ.gMyuGlXUO5lkgTvUBGYEXvX_ThOv_AL4M3Wj9-8nKuA"
+}
+
+###
+GET  http://localhost:3000/user/confirmation/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzNzc5ZGJlZDkxZGE2NGIxZDhmYjRkYSIsIm5hbWUiOiJyYXllbiIsImxhc3ROYW1lIjoiaHJhcmgiLCJhZHJlc3MiOiJhemVhemVheiIsImRyaXZlckxpY2Vuc2UiOiIxMjM1NjQiLCJkZWxldnJlZE9uIjoiMjAyMi0xMS0xOFQxNDo1ODo0OC4wMDBaIiwibnVtYmVyIjo3NDU4LCJwYXNzd29yZCI6IiQyYiQxMCRERk1oektLRVNONjg3RHF4V0laWncuSlliSGpZUjlCTkdRMVpZUEZUNTZ6ZkloS3NoOG0vdSIsImVtYWlsIjoicmF5ZW5oYXJob3VyaTk5QGdtYWlsLmNvbSIsInZlcmlmaWVkIjpmYWxzZSwib3RwIjo4OTg5LCJjcmVhdGVkQXQiOiIyMDIyLTExLTE4VDE0OjU5OjEwLjUyMloiLCJ1cGRhdGVkQXQiOiIyMDIyLTExLTE4VDE0OjU5OjEwLjUyMloiLCJfX3YiOjB9LCJpYXQiOjE2Njg3ODM1NjAsImV4cCI6MTY2ODc4NzE2MH0.X6h4H4MtsCFIq9XNuI47ItiYMn_qWv1rN5a3wDHDuXU
+Content-Type: application/json

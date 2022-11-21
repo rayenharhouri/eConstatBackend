@@ -15,21 +15,25 @@ export async function LogIn(req, res) {
     if (!(email && password)) {
       res.status(400).send('Required Input')
     }
-    const user = await User.findOne({ email: email.toLowerCase() })
+    const user = await User.findOne({ email: email })
     if (user && (await bcrypt.compare(password, user.password))) {
       dotenv.config()
       let token = new Token({
         userId: user._id,
         token: jwt.sign(
-          { email: user.email, password: user.password },
+          { user },
           process.env.ACCESS_TOKEN_SECRET,
           { expiresIn: '1H' },
         ),
       })
 
       res.status(200).json({ message: 'login avec succeés', user, token })
+     
+    } else {
+      res.status(400).json({erreur : "erreur"})
     }
   } catch (err) {
+    res.status(400).json({json:"erreur"})
     console.log(err)
   }
 }
@@ -183,9 +187,11 @@ function sendEmail(mailOptions) {
 }
 
 export async function confirmation(req, res) {
+  console.log(req.params.token);
   if (req.params.token) {
     try {
         let token = jwt.verify(req.params.token, process.env.ACCESS_TOKEN_SECRET)
+        console.log("ghefsfsdfdsf");
         console.log(token.user._id);
     } catch (e) {
       return res.status(200).json({"error" : "erreur"})
@@ -226,12 +232,15 @@ export async function confirmation(req, res) {
 
 //FORGET PASSWORD LOGIC
 export async function forgotPassword (req, res) {
-  let OTP = otpGenerator.generate(4,{upperCaseAlphabets:false,specialChars:false,digits:true,lowerCaseAlphabets:false})
-  const user = await User.findOneAndUpdate({ email: req.body.email,otp: OTP})
-  if (user) {
+  const {email} = req.body
+  const isExisting = await User.findOne({email})
+  console.log(isExisting)
+  if (isExisting) {
+    let OTP = otpGenerator.generate(4,{upperCaseAlphabets:false,specialChars:false,digits:true,lowerCaseAlphabets:false})
+    const user = await User.findOneAndUpdate({email: isExisting.email,otp: OTP})
     await sendOTP(req.body.email)
     res.status(200).send({
-      message: "L'email de reinitialisation a été envoyé a " + user.email,
+      message: "L'email de reinitialisation a été envoyé a " + isExisting.email,
     })
   } else {
     res.status(404).send({ message: "User innexistant" })
@@ -239,15 +248,17 @@ export async function forgotPassword (req, res) {
 }
 async function sendOTP(email) {
   const user = await User.findOne({ email: email })
-  sendEmailOTP({
-    from: process.env.eConstat_Mail,
-    to: email,
-    subject: "Password reset",
-    template: 'otp',
-    context: {
-      OTP : user.otp
-    }
-  })
+    sendEmailOTP({
+      from: process.env.eConstat_Mail,
+      to: email,
+      subject: "Password reset",
+      template: 'otp',
+      context: {
+        OTP : user.otp
+      }
+    })
+  
+
 }
 function sendEmailOTP(mailOptions) {
   let transporter = nodemailer.createTransport({
@@ -310,10 +321,26 @@ export async function updatePassword(req, res) {
         },
       }
     )
-
-    return res.send({ message: "Password updated successfully", user })
+    return res.status(200).send({ message: "Password updated successfully", user })
   } else {
     return res.status(403).send({ message: "Password should match" })
   }
+}
+
+export async function userProfil(req,res) {
+  var token = req.body.token
+  console.log(token);
+  if (token) {
+    try {
+        let Token = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
+        console.log(Token.user);
+        res.status(200).send(Token)
+    } catch (e) {
+      return res.status(400).json({"error1" : e})
+    }
+  } else {
+    return res.status(400).json({"error2" : "erreur2"})
+  }
+
 }
 
