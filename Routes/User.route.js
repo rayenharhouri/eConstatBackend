@@ -305,7 +305,7 @@ router.post('/login',UserController.LogIn)
    *      400:
    *        description: Bad request
    */
-router.route('/updateUser').put(UserController.UpdateProfile)
+
 
 
 /**
@@ -365,7 +365,7 @@ router.get("/confirmation/:token", UserController.confirmation)
    */
 router.post('/forgotPassword',UserController.forgotPassword)
 
-
+router.route('/updateUser').put(UserController.UpdateProfile)
 
 /**
    * @openapi

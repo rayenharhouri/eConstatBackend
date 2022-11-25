@@ -8,7 +8,7 @@ Content-Type: application/json
     "name": "Rayen",
     "lastName":"Harhouri",
     "email":"rayenharhouri99@gmail.com",
-    "password":"rayen123",
+    "password":"123",
     "adress":"Mnihla",
     "driverLicense":"147852369",
     "delevredOn": "2020-03-09",
@@ -19,8 +19,8 @@ POST http://localhost:3000/user/login
 Content-Type: application/json
 
 {
-    "email" : "mezenbay@gmail.com",
-    "password" : "test"
+    "email" : "rayenharhouri99@gmail.com",
+    "password" : "123"
 }
 ###
 PATCH http://localhost:3000/user/updateUser
@@ -87,3 +87,44 @@ Content-Type: application/json
 ###
 GET  http://localhost:3000/user/confirmation/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzNzc5ZGJlZDkxZGE2NGIxZDhmYjRkYSIsIm5hbWUiOiJyYXllbiIsImxhc3ROYW1lIjoiaHJhcmgiLCJhZHJlc3MiOiJhemVhemVheiIsImRyaXZlckxpY2Vuc2UiOiIxMjM1NjQiLCJkZWxldnJlZE9uIjoiMjAyMi0xMS0xOFQxNDo1ODo0OC4wMDBaIiwibnVtYmVyIjo3NDU4LCJwYXNzd29yZCI6IiQyYiQxMCRERk1oektLRVNONjg3RHF4V0laWncuSlliSGpZUjlCTkdRMVpZUEZUNTZ6ZkloS3NoOG0vdSIsImVtYWlsIjoicmF5ZW5oYXJob3VyaTk5QGdtYWlsLmNvbSIsInZlcmlmaWVkIjpmYWxzZSwib3RwIjo4OTg5LCJjcmVhdGVkQXQiOiIyMDIyLTExLTE4VDE0OjU5OjEwLjUyMloiLCJ1cGRhdGVkQXQiOiIyMDIyLTExLTE4VDE0OjU5OjEwLjUyMloiLCJfX3YiOjB9LCJpYXQiOjE2Njg3ODM1NjAsImV4cCI6MTY2ODc4NzE2MH0.X6h4H4MtsCFIq9XNuI47ItiYMn_qWv1rN5a3wDHDuXU
 Content-Type: application/json
+
+
+
+
+###
+GET http://localhost:3000/img/Audi.png
+
+###
+POST http://localhost:3000/car/addNew
+Content-Type: application/json
+
+{
+    "brand" : "BMW",
+    "type" : "naarash",
+    "numSerie" : "123456278922322",
+    "fiscalPower" : 7,
+    "numImmatriculation" : "123 TUN 4015",
+    "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzN2UzZmQ3Y2I2Njk3ZWRhNGIzZTA0NSIsIm5hbWUiOiJSYXllbiIsImxhc3ROYW1lIjoiSGFyaG91cmkiLCJhZHJlc3MiOiJNbmlobGEiLCJkcml2ZXJMaWNlbnNlIjoiMTQ3ODUyMzY5IiwiZGVsZXZyZWRPbiI6IjIwMjAtMDMtMDlUMDA6MDA6MDAuMDAwWiIsIm51bWJlciI6MTIzNDU2NzgsInBhc3N3b3JkIjoiJDJiJDEwJFZ5cTVmOUFZTVJLYnN2dXFvYlNzNXU4dXNZNFpQeEQuUHVhVlJxamRBOGo1VTF2dU9Xa0JpIiwiZW1haWwiOiJyYXllbmhhcmhvdXJpOTlAZ21haWwuY29tIiwidmVyaWZpZWQiOmZhbHNlLCJvdHAiOjg5ODksImNhcnMiOltdLCJjcmVhdGVkQXQiOiIyMDIyLTExLTIzVDE1OjQ0OjIzLjU5NloiLCJ1cGRhdGVkQXQiOiIyMDIyLTExLTIzVDE1OjQ0OjIzLjU5NloiLCJfX3YiOjB9LCJpYXQiOjE2NjkyMTgyOTAsImV4cCI6MTY2OTIyMTg5MH0.k1_WCT_i7MMi6gH4wplYfo2AVugaivu77zdLqEY1_dM"
+}
+
+###
+DELETE http://localhost:3000/car/removeCar
+Content-Type: application/json
+
+{
+    "numSerie" : "123456789"
+}
+
+###
+GET http://localhost:3000/car/getCar
+Content-Type: application/json
+
+{
+    "numSerie" : "12345678922322"
+}
+### 
+GET http://localhost:3000/car/allCars
+Content-Type: application/json
+
+
+

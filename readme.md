@@ -10,18 +10,18 @@ this project is made with :
 - MongoDB
 
 
- 
+
 ### Figma : 
 https://www.figma.com/file/YaMjf82vZN1oVX2XgPTdRA/IOS-Project-E-constat?node-id=0%3A1&t=1YDXNTHmXTN0DiMR-0
 
 
 
 
-	
+
 ## NodeJs
 
 Node.js est une plateforme logicielle libre en JavaScript, orientée vers les applications réseau évènementielles hautement concurrentes qui doivent pouvoir monter en charge.
-  
+
 ### Installez les dépendances et exécutez le serveur :
 #### Exécutez le serveur 
 			$ npm install
@@ -34,11 +34,11 @@ Node.js est une plateforme logicielle libre en JavaScript, orientée vers les ap
 	   $ npm install cors
 
  - CORS : package for providing a Connect/Express middleware.
- 
+
 		 $ npm install email-validator
-	  
+
  -Email-validator : Validation une adresse e-mail
-				    
+
 	$ npm install express
 
  - Express un Framework qui nous permettra de faciliter la création de services web.
@@ -89,4 +89,3 @@ N --> D
 ## Architecture MVC
 
 **![](https://lh3.googleusercontent.com/rMhKArrU8BID9BpT7hBBz9iFPJQXpFCunY9Vz4ScqnQrQcuQMZZwewSnnhn2xRRKcwE2iUeTLs6_W-68YBoNll3B2-pWPpBqJMn0ac6Pxyb5_XUnRRFwlSXJhy2DMTN1SZIvAu6xurtyWbz9UwPmRSkEACPiQUHKE0R0Opl89hh9JeHXG7QbiV030mIwKg)**
-

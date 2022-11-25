@@ -9,6 +9,18 @@ import hbs from 'nodemailer-express-handlebars'
 import * as path from 'path'
 import otpGenerator from 'otp-generator'
 
+export async function getAllUserCars (req, res) {
+  var token = req.body.token
+  let Token = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
+  var users =await User.findOne().populate('cars')
+  try{
+    res.send(users)
+  } catch(err) {
+    console.log(err);
+  }
+}
+
+
 export async function LogIn(req, res) {
   try {
     const { email, password } = req.body
@@ -102,13 +114,30 @@ export async function SignUp(req, res) {
 }
 
 export async function UpdateProfile(req, res) {
-  const driverLicense = req.params.driverLicense
-  var user = await User.findOneAndUpdate({
-    driverLicense: driverLicense,
-    name: req.body.name,
-  })
-  res.status(200).json(user)
+  const {driverLicense,name,lastName,token} = req.body
+if (token) {
+  try {
+    let Token = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
+    let user = await User.findOneAndUpdate(
+      { email: Token.user.email },
+      {
+        $set: {
+          driverLicense: driverLicense,
+          name: name,
+          lastName: lastName
+        },
+      }
+    )
+    console.log(user);
+    await res.status(200).send(user)
+  } catch (e) {
+    return res.status(400).json({ "error1": e })
+  }
+} else {
+  return res.status(400).json({ "error2": "erreur2" })
 }
+}
+
 
 export async function sendConfirmationEmail(req, res) {
   //finding the user mail
