@@ -9,6 +9,18 @@ import hbs from 'nodemailer-express-handlebars'
 import * as path from 'path'
 import otpGenerator from 'otp-generator'
 
+export async function getAllUserCars (req, res) {
+  var token = req.body.token
+  let Token = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
+  var users =await User.findOne().populate('cars')
+  try{
+    res.send(users)
+  } catch(err) {
+    console.log(err);
+  }
+}
+
+
 export async function LogIn(req, res) {
   try {
     const { email, password } = req.body

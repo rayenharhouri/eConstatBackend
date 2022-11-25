@@ -48,7 +48,9 @@ const userSchema = mongoose.Schema(
         otp : {
             type : Number,
             default : '8989'
-        }
+        },
+        cars : [{type : Schema.Types.ObjectId, ref: "car"}]
+        
     }, 
         {
             timestamps : true

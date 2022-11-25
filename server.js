@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import morgan from 'morgan'
 import cors from 'cors'
 import UserRoute from './Routes/User.route.js'
+import CarRoute from './Routes/Car.route.js'
 import swaggerJSDoc from 'swagger-jsdoc'
 import swaggerUi from 'swagger-ui-express'
 import passport from 'passport'
@@ -33,9 +34,8 @@ mongoose
     .catch(err => {
         console.log(err)
     })
+app.use("/img",express.static('public/carIcons'))
 app.use(cors())
-app.use(morgan("dev"))
-
 
 const options={
     definition:{
@@ -60,6 +60,7 @@ const options={
 
 
 app.use("/user", UserRoute)
+app.use("/car",CarRoute)
 
 //Pour les images
 app.use(express.urlencoded({ extended: true }))
