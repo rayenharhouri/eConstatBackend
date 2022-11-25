@@ -305,7 +305,7 @@ router.post('/login',UserController.LogIn)
    *      400:
    *        description: Bad request
    */
-router.route('/updateUser/:dirverLicence').patch(UserController.UpdateProfile)
+router.route('/updateUser').put(UserController.UpdateProfile)
 
 
 /**
