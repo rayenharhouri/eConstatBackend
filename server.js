@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import morgan from 'morgan'
 import cors from 'cors'
 import UserRoute from './Routes/User.route.js'
+import InsuranceRoute from './Routes/Insurance.route.js'
 import CarRoute from './Routes/Car.route.js'
 import swaggerJSDoc from 'swagger-jsdoc'
 import swaggerUi from 'swagger-ui-express'
@@ -35,6 +36,7 @@ mongoose
         console.log(err)
     })
 app.use("/img",express.static('public/carIcons'))
+app.use("/imgInsurance",express.static('public/InsuranceIcons'))
 app.use(cors())
 
 const options={
@@ -61,6 +63,8 @@ const options={
 
 app.use("/user", UserRoute)
 app.use("/car",CarRoute)
+app.use("/insurance",InsuranceRoute)
+
 
 //Pour les images
 app.use(express.urlencoded({ extended: true }))

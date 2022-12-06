@@ -399,5 +399,4 @@ router.put("/updatePassword",UserController.updatePassword)
 router.post("/userProfil",UserController.userProfil)
 
 
-
 export default router

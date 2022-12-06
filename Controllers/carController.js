@@ -26,13 +26,13 @@ export async function addNewCar(req, res) {
       numSerie,
       fiscalPower,
       numImmatriculation,
-      carImage : "localhost:3000/img/"+brand+".png",
+      carImage : "http://localhost:3000/img/"+brand+".png",
       owner : userId
     })
     console.log(car._id);
     user.cars.push(car._id)
     user.save()
-    res.send(car)
+    res.status(200).json({car : car})
   } catch (err) {
     console.log(err)
   }
@@ -60,11 +60,31 @@ export async function getCar(req,res) {
 }
 
 export async function getAllCars (req, res) {
-  var cars =await Car.find().populate('owner')
-  try{
-    res.send(cars)
-  } catch(err) {
-    console.log(err);
+  var token = req.body.token
+  let Token = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
+  var cars =await Car.find()
+  
+  if (Token) {
+    try {
+        let Token = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
+        let userId = Token.user._id
+        var userCars
+        if (true){
+          userCars = cars.filter( car => {
+            let isValid = true
+              console.log(car);
+              isValid = isValid && car.owner == userId
+            return isValid
+          })     
+          res.status(200).send(userCars)
+        } else {
+          console.log("erruer");
+        }        
+    } catch (e) {
+      return res.status(400).json({"error12" : e})
+    }
+  } else {
+    return res.status(400).json({"error2" : "erreur2"})
   }
   
 }

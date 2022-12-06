@@ -22,7 +22,7 @@ const InsuranceSchema = mongoose.Schema(
             required : true,
         },
         validityFrom: {
-            type: Number,
+            type: String,
             required: true,
         },
         validityTo: {
@@ -32,7 +32,8 @@ const InsuranceSchema = mongoose.Schema(
         image: {
             type: String,
             required: true
-        }
+        },
+        cars : {type : Schema.Types.ObjectId, ref: "car"}
     }, 
         {
             timestamps : true

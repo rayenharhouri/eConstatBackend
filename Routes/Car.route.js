@@ -9,5 +9,5 @@ const route = express.Router()
 route.post("/addNew",car.addNewCar)
 route.delete("/removeCar",car.removeCar)
 route.get("/getCar",car.getCar)
-route.get("/allCars",car.getAllCars)
+route.post("/allCars",car.getAllCars)
 export default route

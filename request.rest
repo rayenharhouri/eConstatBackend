@@ -39,10 +39,6 @@ Content-Type: application/json
     "email" : "rayenharhouri99@gmail.com"
 }
 
-
-
-
-
 ###
 POST http://localhost:3000/user/send-confirmation-email
 Content-Type: application/json
@@ -88,9 +84,6 @@ Content-Type: application/json
 GET  http://localhost:3000/user/confirmation/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzNzc5ZGJlZDkxZGE2NGIxZDhmYjRkYSIsIm5hbWUiOiJyYXllbiIsImxhc3ROYW1lIjoiaHJhcmgiLCJhZHJlc3MiOiJhemVhemVheiIsImRyaXZlckxpY2Vuc2UiOiIxMjM1NjQiLCJkZWxldnJlZE9uIjoiMjAyMi0xMS0xOFQxNDo1ODo0OC4wMDBaIiwibnVtYmVyIjo3NDU4LCJwYXNzd29yZCI6IiQyYiQxMCRERk1oektLRVNONjg3RHF4V0laWncuSlliSGpZUjlCTkdRMVpZUEZUNTZ6ZkloS3NoOG0vdSIsImVtYWlsIjoicmF5ZW5oYXJob3VyaTk5QGdtYWlsLmNvbSIsInZlcmlmaWVkIjpmYWxzZSwib3RwIjo4OTg5LCJjcmVhdGVkQXQiOiIyMDIyLTExLTE4VDE0OjU5OjEwLjUyMloiLCJ1cGRhdGVkQXQiOiIyMDIyLTExLTE4VDE0OjU5OjEwLjUyMloiLCJfX3YiOjB9LCJpYXQiOjE2Njg3ODM1NjAsImV4cCI6MTY2ODc4NzE2MH0.X6h4H4MtsCFIq9XNuI47ItiYMn_qWv1rN5a3wDHDuXU
 Content-Type: application/json
 
-
-
-
 ###
 GET http://localhost:3000/img/Audi.png
 
@@ -101,10 +94,10 @@ Content-Type: application/json
 {
     "brand" : "BMW",
     "type" : "naarash",
-    "numSerie" : "123456278922322",
+    "numSerie" : "1232234562789223333322",
     "fiscalPower" : 7,
     "numImmatriculation" : "123 TUN 4015",
-    "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzN2UzZmQ3Y2I2Njk3ZWRhNGIzZTA0NSIsIm5hbWUiOiJSYXllbiIsImxhc3ROYW1lIjoiSGFyaG91cmkiLCJhZHJlc3MiOiJNbmlobGEiLCJkcml2ZXJMaWNlbnNlIjoiMTQ3ODUyMzY5IiwiZGVsZXZyZWRPbiI6IjIwMjAtMDMtMDlUMDA6MDA6MDAuMDAwWiIsIm51bWJlciI6MTIzNDU2NzgsInBhc3N3b3JkIjoiJDJiJDEwJFZ5cTVmOUFZTVJLYnN2dXFvYlNzNXU4dXNZNFpQeEQuUHVhVlJxamRBOGo1VTF2dU9Xa0JpIiwiZW1haWwiOiJyYXllbmhhcmhvdXJpOTlAZ21haWwuY29tIiwidmVyaWZpZWQiOmZhbHNlLCJvdHAiOjg5ODksImNhcnMiOltdLCJjcmVhdGVkQXQiOiIyMDIyLTExLTIzVDE1OjQ0OjIzLjU5NloiLCJ1cGRhdGVkQXQiOiIyMDIyLTExLTIzVDE1OjQ0OjIzLjU5NloiLCJfX3YiOjB9LCJpYXQiOjE2NjkyMTgyOTAsImV4cCI6MTY2OTIyMTg5MH0.k1_WCT_i7MMi6gH4wplYfo2AVugaivu77zdLqEY1_dM"
+    "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzODI2MGU2Mzc5ZjY4ZjhiMDQwNTdlYyIsIm5hbWUiOiJyYXllbiIsImxhc3ROYW1lIjoiaGFyaG91cmkiLCJhZHJlc3MiOiJtbmlobGEiLCJkcml2ZXJMaWNlbnNlIjoiNjk2OTY5Njk2OSIsImRlbGV2cmVkT24iOiIyMDIyLTExLTIzVDE4OjUyOjAwLjAwMFoiLCJudW1iZXIiOjUzMzQ0NTExLCJwYXNzd29yZCI6IiQyYiQxMCQ5MHYxank1RmhlRW9Nb0k1ZGIuTGdlZjdBWWY2OGd5bzliYVB2QlRZb0htZVBDLmNkc1hFQyIsImVtYWlsIjoicmF5ZW5oYXJob3VyaTk5QGdtYWlsLmNvb20iLCJ2ZXJpZmllZCI6dHJ1ZSwib3RwIjo4OTg5LCJjYXJzIjpbIjYzODI2ZjJiMzc5ZjY4ZjhiMDQwNTdmYSIsIjYzODI3Nzc2Mzc5ZjY4ZjhiMDQwNTgwMSJdLCJjcmVhdGVkQXQiOiIyMDIyLTExLTI2VDE4OjU0OjMwLjE0NFoiLCJ1cGRhdGVkQXQiOiIyMDIyLTExLTI2VDIwOjMwOjQ2LjI5MFoiLCJfX3YiOjJ9LCJpYXQiOjE2Njk1NzQ4NDMsImV4cCI6MTY2OTU3ODQ0M30.IQZ-aAdM2o4_UMGWtbo9eR56bK8OQEBJ9gy-Xb7jEZg"
 }
 
 ###
@@ -123,8 +116,29 @@ Content-Type: application/json
     "numSerie" : "12345678922322"
 }
 ### 
-GET http://localhost:3000/car/allCars
+POST http://localhost:3000/car/allCars
 Content-Type: application/json
 
+{
+    "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzODYwNmQyNDMwNDA5NmEwNDRiODNiMiIsIm5hbWUiOiJyYXllbiIsImxhc3ROYW1lIjoiaGFyaG91cmkiLCJhZHJlc3MiOiJtbmlobGEiLCJkcml2ZXJMaWNlbnNlIjoiMTIzNDU2Nzg5OCIsImRlbGV2cmVkT24iOiIyMDIyLTExLTI5VDEzOjE4OjA5LjAwMFoiLCJudW1iZXIiOjUzMzQ0NTExLCJwYXNzd29yZCI6IiQyYiQxMCRSLjFLMzU1bWlNZ1F6dkVuZ3dVQngucTNpQ1FncWlJQ3FWaDVqSWlCNFViL0l1SEppRnJIYSIsImVtYWlsIjoicmF5ZW5AZG9tYWluLmNvbSIsInZlcmlmaWVkIjp0cnVlLCJvdHAiOjg5ODksImNhcnMiOlsiNjM4NjBlNzBiYWIzZTFkZjI4YzkwZWJiIiwiNjM4NjBlOTBiYWIzZTFkZjI4YzkwZWMyIl0sImNyZWF0ZWRBdCI6IjIwMjItMTEtMjlUMTM6MTk6MTQuMjU1WiIsInVwZGF0ZWRBdCI6IjIwMjItMTEtMjlUMTM6NTI6MTYuMDU4WiIsIl9fdiI6Mn0sImlhdCI6MTY2OTczNTYwNSwiZXhwIjoxNjY5NzM5MjA1fQ.DIfAIrSvbSwUZWk6YXX4MPl8LW9ZtLnIL7slTfEmcAo"
+}
+###
+POST http://localhost:3000/insurance/addNew
+Content-Type: application/json
 
+{
+    "name" : "star",
+    "numContrat" : "12512343",
+    "agency" : "12321",
+    "validityFrom":"12321",
+    "validityTo":"12321",
+    "carId" : "6389f786591f1cab0201f265"
+}
 
+###
+POST http://localhost:3000/insurance/getAll
+Content-Type: application/json
+
+{
+    "carId": "6389fbb1b516177b8188c246"
+}
