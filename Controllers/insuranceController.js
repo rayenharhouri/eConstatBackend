@@ -1,6 +1,7 @@
 import InsuranceModel from '../Models/Insurance.model.js'
 import CarModel from "../Models/Car.model.js"
 import jwt from 'jsonwebtoken'
+import mongoose from 'mongoose'
 
 
 export async function addNewInsurance(req, res) {
@@ -38,14 +39,15 @@ export async function addNewInsurance(req, res) {
 }
 
 export async function getInsurance (req, res) {
-  var carId = req.body
-  var Insurances = await InsuranceModel.findOne({carId})
+  var carId = req.body.cars
+  
+  console.log(carId);
+  var Insurances = await InsuranceModel.findOne({cars : carId})
   
   if (carId) {
     try {
-        var CarInsurances
-        if (true){  
-          res.status(200).send(Insurances)
+      if (true) {
+        res.status(200).send(Insurances)
       } else {
           console.log("erruer");
         }        

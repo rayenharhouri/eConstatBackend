@@ -3,6 +3,7 @@ import Car from '../Models/Car.model.js'
 import InsuranceModel from '../Models/Insurance.model.js'
 import jwt from 'jsonwebtoken'
 import UserModel from '../Models/User.model.js'
+import CarModel from '../Models/Car.model.js'
 
 export async function addNewCar(req, res) {
   try {
@@ -87,4 +88,45 @@ export async function getAllCars (req, res) {
     return res.status(400).json({"error2" : "erreur2"})
   }
   
+}
+
+
+
+
+export async function getDataFromQrCode(req,res) {
+let ids = req.body.ids;
+
+try {
+  
+    console.log(ids);
+    const idCar = ids.substring(0, 24);
+    var car = await CarModel.findById(idCar);
+    console.log("car = " + idCar);
+    console.log("car = " + car);
+    
+    const idUser =  ids.substring(24, 48);
+    var user = await UserModel.findById(idUser)
+    console.log("user = " + idUser);
+    console.log("user = " + user);
+
+    
+    const idInsurance = ids.substring(48, 72);
+    var Insurance = await InsuranceModel.findById(idInsurance)
+    console.log("insurance = " + idInsurance);
+    console.log("insurance = " + Insurance);
+
+    var response = {
+      
+          car
+      ,
+        user
+      ,
+  
+        Insurance
+      
+    }
+    res.status(200).send(response)
+} catch (e){
+  res.status(400).json({err : e})
+}
 }

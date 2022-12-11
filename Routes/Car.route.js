@@ -10,4 +10,5 @@ route.post("/addNew",car.addNewCar)
 route.delete("/removeCar",car.removeCar)
 route.get("/getCar",car.getCar)
 route.post("/allCars",car.getAllCars)
+route.post("/getUserBdata",car.getDataFromQrCode)
 export default route

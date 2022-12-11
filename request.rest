@@ -140,5 +140,26 @@ POST http://localhost:3000/insurance/getAll
 Content-Type: application/json
 
 {
-    "carId": "6389fbb1b516177b8188c246"
+    "cars": "63860e90bab3e1df28c90ec2"
+}
+
+###
+POST http://localhost:3000/car/getUserBdata
+Content-Type: application/json
+
+{
+    "ids": "6389f786591f1cab0201f26563790b8f9ad9c620383633ef6395e7c8b46cd6f005f4b04c"
+}
+###
+POST http://localhost:3000/carDamage/addNew
+Content-Type: application/json
+
+{
+    "TopLeft" : true, 
+    "MidLeft" : false,
+    "BottomLeft" : true,
+    "TopRight" :  false,
+    "MidRight" : false,
+    "BottomRight" : true,
+    "carId" : "6389f786591f1cab0201f265"
 }

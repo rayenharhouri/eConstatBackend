@@ -5,6 +5,7 @@ import cors from 'cors'
 import UserRoute from './Routes/User.route.js'
 import InsuranceRoute from './Routes/Insurance.route.js'
 import CarRoute from './Routes/Car.route.js'
+import carDamageRoute from './Routes/CarDamage.route.js'
 import swaggerJSDoc from 'swagger-jsdoc'
 import swaggerUi from 'swagger-ui-express'
 import passport from 'passport'
@@ -64,6 +65,7 @@ const options={
 app.use("/user", UserRoute)
 app.use("/car",CarRoute)
 app.use("/insurance",InsuranceRoute)
+app.use("/carDamage",carDamageRoute)
 
 
 //Pour les images
@@ -74,45 +76,3 @@ app.listen(port, hostname, () => {
 });
 
 
-///////////////////////////////////////google auth
-
-app.use(session({ secret: 'cats', resave: false, saveUninitialized: true }));
-
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-app.get('/', (req, res) => {
-    res.send('<a href="/auth/google">Authenticate with Google</a>');
-  });
-
-
-function isLoggedIn(req, res, next) {
-    req.user ? next() : res.sendStatus(401);
-  }
-
-  app.get('/auth/google',
-  passport.authenticate('google', { scope: [ 'email', 'profile' ] }
-));
-
-app.get( '/auth/google/callback',
-  passport.authenticate( 'google', {
-    successRedirect: '/protected',
-    failureRedirect: '/auth/google/failure'
-  })
-);
-
-
-app.get('/protected', isLoggedIn, (req, res) => {
-    res.send(`Hello ${req.user.displayName}`);
-  });
-
-  app.get('/logout', (req, res) => {
-    req.logout();
-    req.session.destroy();
-    res.send('Goodbye!');
-  });
-
-  app.get('/auth/google/failure', (req, res) => {
-    res.send('Failed to authenticate..');
-  });
