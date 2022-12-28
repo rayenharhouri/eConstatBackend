@@ -163,3 +163,26 @@ Content-Type: application/json
     "BottomRight" : true,
     "carId" : "6389f786591f1cab0201f265"
 }
+###
+POST http://localhost:3000/constat/addNew
+Content-Type: application/json
+
+{
+    "UserA" : "63790b8f9ad9c620383633ef", 
+    "CarA" : "6389f786591f1cab0201f265",
+    "InsuranceA" : "639055b735e6b4af88ea9ab2",
+    "CarDamageA" : "6396240eee188b70b66e3f36"
+}
+
+
+###
+POST http://localhost:3000/constat/addNewB
+Content-Type: application/json
+
+{
+    "constatId" : "639777b699c22f1e7568438b",
+    "UserB" : "63790b8f9ad9c620383633ef", 
+    "CarB" : "6389f786591f1cab0201f265",
+    "InsuranceB" : "639055b735e6b4af88ea9ab2"
+
+}

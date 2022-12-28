@@ -10,11 +10,11 @@ const ConstatSchema = mongoose.Schema(
     {
         UserA: {
             type : Schema.Types.ObjectId,
-            ref: 'userA',
+            ref: 'UserA',
         },
         CarA: {
             type : Schema.Types.ObjectId,
-            ref: 'carA',
+            ref: 'CarA',
         },
         InsuranceA: {
             type : Schema.Types.ObjectId,
@@ -23,14 +23,17 @@ const ConstatSchema = mongoose.Schema(
         UserB: {
             type : Schema.Types.ObjectId,
             ref: 'userB',
+            
         },
         CarB: {
             type : Schema.Types.ObjectId,
             ref: 'carB',
+          
         },
         InsuranceB: {
             type : Schema.Types.ObjectId,
             ref: 'InsuranceB',
+            
         },
         CarDamageA: {
             type : Schema.Types.ObjectId,
@@ -39,6 +42,7 @@ const ConstatSchema = mongoose.Schema(
         CarDamageB: {
             type : Schema.Types.ObjectId,
             ref: 'CarDamageB',
+            
         },
     }, 
         {

@@ -6,6 +6,7 @@ import UserRoute from './Routes/User.route.js'
 import InsuranceRoute from './Routes/Insurance.route.js'
 import CarRoute from './Routes/Car.route.js'
 import carDamageRoute from './Routes/CarDamage.route.js'
+import constatRoute from './Routes/Constat.route.js'
 import swaggerJSDoc from 'swagger-jsdoc'
 import swaggerUi from 'swagger-ui-express'
 import passport from 'passport'
@@ -66,6 +67,7 @@ app.use("/user", UserRoute)
 app.use("/car",CarRoute)
 app.use("/insurance",InsuranceRoute)
 app.use("/carDamage",carDamageRoute)
+app.use("/constat",constatRoute)
 
 
 //Pour les images
