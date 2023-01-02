@@ -125,6 +125,7 @@ try {
         Insurance
       
     }
+    
     res.status(200).send(response)
 } catch (e){
   res.status(400).json({err : e})
