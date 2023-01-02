@@ -7,6 +7,7 @@ const route = express.Router()
 route.post("/addNew",constat.addNewConstat)
 route.post("/addNewB",constat.addNewConstatB)
 route.post("/get",constat.getConstat)
+route.post("/sendReport",constat.sendConfirmationEmail)
 
 
 

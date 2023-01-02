@@ -7,7 +7,7 @@ Content-Type: application/json
 {
     "name": "Rayen",
     "lastName":"Harhouri",
-    "email":"rayenharhouri99@gmail.com",
+    "email":"hmaidharhouri69@gmail.com",
     "password":"123",
     "adress":"Mnihla",
     "driverLicense":"147852369",
@@ -132,7 +132,7 @@ Content-Type: application/json
     "agency" : "12321",
     "validityFrom":"12321",
     "validityTo":"12321",
-    "carId" : "6389f786591f1cab0201f265"
+    "carId" : "637e49e8da8c0442e754d463"
 }
 
 ###
@@ -168,7 +168,7 @@ POST http://localhost:3000/constat/addNew
 Content-Type: application/json
 
 {
-    "UserA" : "63790b8f9ad9c620383633ef", 
+    "UserA" : "637e3fd7cb6697eda4b3e045", 
     "CarA" : "6389f786591f1cab0201f265",
     "InsuranceA" : "639055b735e6b4af88ea9ab2",
     "CarDamageA" : "6396240eee188b70b66e3f36"
@@ -180,9 +180,16 @@ POST http://localhost:3000/constat/addNewB
 Content-Type: application/json
 
 {
-    "constatId" : "639777b699c22f1e7568438b",
+    "constatId" : "63adf3037324a3960574b7d2",
     "UserB" : "63790b8f9ad9c620383633ef", 
     "CarB" : "6389f786591f1cab0201f265",
     "InsuranceB" : "639055b735e6b4af88ea9ab2"
 
+}
+###
+POST http://localhost:3000/constat/sendReport
+Content-Type: application/json
+
+{
+    "email" : "hmaidharhouri69@gmail.com"
 }
