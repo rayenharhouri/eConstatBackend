@@ -54,15 +54,20 @@ export async function addNewConstat(req, res) {
       console.log(err)
     }
   }
-  export async function getConstat(req,res,userId) {
-    let idU = await req.body.idU
-    var constat = await ConstatModel.find({idU})
-    var x
-    constat.forEach(e => x = e.CarA)
-    var car = await carModel.findById(x)
-    res.status(200).send(car)
+  export async function getConstat(req,res) {
+    const constat = await ConstatModel.findOne({idU : req.body.idU})
+    if(constat) {
+      console.log("nice");
+      var userBid = constat.UserB
+      var carBid = constat.CarB
+      const userB = await User.findById(userBid)
+      const carB = await CarModel.findById(carBid)
+      const response = {car : carB.brand}
+      res.status(200).send(response)
+    }else {
+      res.status(400).json({message : "erreur"})
+    }
 
-    console.log(req.body)
   }
 
   export async function sendConfirmationEmail(req, res) {
@@ -99,6 +104,7 @@ export async function addNewConstat(req, res) {
     var B_name = userB.name + " " + userB.lastName
     var B_Adress = userB.adress
     var B_license = userB.driverLicense
+    var B_userMail = userB.email
     var A_brand = carA.brand
     var B_brand = carB.brand
     var A_type = carA.type
@@ -113,7 +119,39 @@ export async function addNewConstat(req, res) {
     var B_vFrom = InsuranceB.validityFrom
     var B_vTo = InsuranceB.validityTo
     var A_vTo = InsuranceA.validityTo
-
+    console.log(B_brand);    
+    console.log(A_brand);    
+    sendEmail({
+      from: process.env.eConstat_Mail,
+      to: B_userMail,
+      subject: 'eConstat Report',
+      template: 'index' ,
+      context: {
+         //user details
+          A_Name : user.name+" "+user.lastName,
+          A_Adress : user.adress,
+          A_license : user.driverLicense,
+          B_Name: B_name,
+          B_Adress : B_Adress,
+          B_license : B_license,
+          //car Details
+          A_brand : A_brand,
+          A_type : A_type,
+          A_imm : A_imm,
+          B_brand : B_brand,
+          B_type : B_type,
+          B_imm : B_imm,
+          //insurance details
+          A_Iname : A_Iname,
+          B_Iname :B_Iname ,
+          A_Iagency :A_Iagency,
+          B_Iagency :B_Iagency,
+          A_vFrom :A_vFrom,
+          B_vFrom :B_vFrom,
+          B_vTo :B_vTo,
+          A_vTo:A_vTo
+      }
+    })
     sendEmail({
       from: process.env.eConstat_Mail,
       to: email,

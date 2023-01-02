@@ -1,0 +1,24 @@
+version: "3"
+services:
+  api:
+    image: ilyesblg/fantasy_server
+    build: .
+    environment: 
+      - NODE_ENV = production
+      - DB_URL = mongodb://mongo
+    ports: 
+      - "5000:5000"
+    networks:
+      - app_7
+  mongo:
+    image: mongo:6
+    ports:
+      - '5001:27017'   
+    volumes:
+      - ./database:/data/db
+    networks: 
+      - app_7
+volumes:
+  database :
+networks:
+  app_7 :

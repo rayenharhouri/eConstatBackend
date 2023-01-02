@@ -7,7 +7,7 @@ Content-Type: application/json
 {
     "name": "Rayen",
     "lastName":"Harhouri",
-    "email":"hmaidharhouri69@gmail.com",
+    "email":"mayssa.mejri@esprit.tn",
     "password":"123",
     "adress":"Mnihla",
     "driverLicense":"147852369",
@@ -191,5 +191,12 @@ POST http://localhost:3000/constat/sendReport
 Content-Type: application/json
 
 {
-    "email" : "hmaidharhouri69@gmail.com"
+    "email" : "mayssa.mejri@esprit.tn"
+}
+###
+POST http://localhost:3000/constat/get
+Content-Type: application/json
+
+{
+    "idU" : "63790b8f9ad9c620383633ef"
 }
