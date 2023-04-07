@@ -27,7 +27,6 @@ const userSchema = mongoose.Schema(
         },
         delevredOn: {
             type: Date,
-            required : true,
         },
         number : {
             type: Number,

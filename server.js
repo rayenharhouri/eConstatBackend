@@ -16,8 +16,8 @@ const app = express()
 
 const database = "eConstat" 
 const port = process.env.port || 3000
-//const hostname = '127.0.0.1'
-const hostname = '0.0.0.0'
+const hostname = '127.0.0.1'
+//const hostname = '0.0.0.0'
 
 import * as dotenv from 'dotenv' ;
 dotenv.config()
@@ -26,13 +26,10 @@ dotenv.config()
 app.use(express.json())
 
 
-
-
-
 mongoose.set('debug', true)
 mongoose.Promise = global.Promise
 mongoose
-    .connect(`mongodb://mongo/${database}`)
+    .connect(`mongodb://localhost:27017/${database}`)
     .then(() => {
         console.log(`connected to  ${database}`)
     })
