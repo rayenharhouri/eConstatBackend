@@ -27,7 +27,7 @@ export async function addNewCar(req, res) {
       numSerie,
       fiscalPower,
       numImmatriculation,
-      carImage : "http://localhost:3000/img/"+brand+".png",
+      carImage : "/img/"+brand+".png",
       owner : userId
     })
     console.log(car._id);
@@ -77,7 +77,7 @@ export async function getAllCars (req, res) {
               isValid = isValid && car.owner == userId
             return isValid
           })     
-          res.status(200).send(userCars)
+          res.status(200).send({cars:userCars})
         } else {
           console.log("erruer");
         }        

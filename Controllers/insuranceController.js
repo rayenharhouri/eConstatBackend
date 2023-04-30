@@ -21,12 +21,12 @@ export async function addNewInsurance(req, res) {
     const existantInsurance = await InsuranceModel.findOne({ numContrat })
     if (existantInsurance) {
       return res.status(409).send('Contrat Already exist')
-    }
+    } 
     const insurance = await InsuranceModel.create({
       name,
       numContrat,
       agency,
-      image : "http://localhost:3000/imgInsurance/"+name+".png",
+      image : "http://10.0.2.2:3000/imgInsurance/"+name+".png",
       validityFrom,
       validityTo,
     })
@@ -41,16 +41,14 @@ export async function addNewInsurance(req, res) {
 export async function getInsurance (req, res) {
   var carId = req.body.cars
   
-  console.log(carId);
-  var Insurances = await InsuranceModel.findOne({cars : carId})
+  
   
   if (carId) {
     try {
-      if (true) {
-        res.status(200).send(Insurances)
-      } else {
-          console.log("erruer");
-        }        
+      console.log(carId);
+      var Insurances = await InsuranceModel.findOne({cars : carId})
+        res.status(200).json({insurance : Insurances})
+            
     } catch (e) {
       return res.status(400).json({"error12" : e})
     }

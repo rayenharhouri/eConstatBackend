@@ -9,8 +9,6 @@ import carDamageRoute from './Routes/CarDamage.route.js'
 import constatRoute from './Routes/Constat.route.js'
 import swaggerJSDoc from 'swagger-jsdoc'
 import swaggerUi from 'swagger-ui-express'
-import passport from 'passport'
-import session from 'express-session'
 import './auth/auth.js'
 const app = express()
 
@@ -38,7 +36,11 @@ mongoose
     })
 app.use("/img",express.static('public/carIcons'))
 app.use("/imgInsurance",express.static('public/InsuranceIcons'))
-app.use(cors())
+app.use(cors(
+    {
+        origin: "*"
+    }
+))
 
 const options={
     definition:{

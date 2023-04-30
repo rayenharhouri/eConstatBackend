@@ -7,14 +7,14 @@ Content-Type: application/json
 {
     "name": "Rayen",
     "lastName":"Harhouri",
-    "email":"mezen.bayounes@esprit.tn",
+    "email":"rayenharhouri99@gmail.com",
     "password":"123",
     "adress":"Mnihla",
     "driverLicense":"147852369",
     "delevredOn": "2020-03-09",
     "number": 12345678
 }
-###
+### 
 POST http://localhost:3000/user/login
 Content-Type: application/json
 
@@ -23,12 +23,16 @@ Content-Type: application/json
     "password" : "123"
 }
 ###
-PATCH http://localhost:3000/user/updateUser
+PUT http://localhost:3000/user/updateUser
 Content-Type: application/json
 
 {
-    "driverLicence" : "F23322443",
-    "name" : "mezen"
+    "driverLicence" : "147852369",
+    "name" : "RiBo",
+    "lastName" : "RiNsssso",
+    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY0MzgzMWU1NmVlOTZmODE1ZjllNDBjYiIsIm5hbWUiOiJSYUlubyIsImxhc3ROYW1lIjoiSGFyaG91cmkiLCJhZHJlc3MiOiJNbmlobGEiLCJkcml2ZXJMaWNlbnNlIjoiMTQ3ODUyMzY5IiwiZGVsZXZyZWRPbiI6IjIwMjAtMDMtMDlUMDA6MDA6MDAuMDAwWiIsIm51bWJlciI6MTIzNDU2NzgsInBhc3N3b3JkIjoiJDJiJDEwJGsvR1pmemtSczJtTmJacC85Q0ZSR3U3bk5BejZQVUtIRGRaSUdCTE1TZ2VTTU8wN0ljZGVxIiwiZW1haWwiOiJyYXllbmhhcmhvdXJpOTlAZ21haWwuY29tIiwidmVyaWZpZWQiOnRydWUsIm90cCI6ODk4OSwiY2FycyI6W10sImNyZWF0ZWRBdCI6IjIwMjMtMDQtMTNUMTY6NDY6MjkuMTA2WiIsInVwZGF0ZWRBdCI6IjIwMjMtMDQtMTNUMjA6NDg6MDguODgzWiIsIl9fdiI6MH0sImlhdCI6MTY4MTQxOTEzNywiZXhwIjoxNjgxNDIyNzM3fQ.brlrBSI2wg98kg-MWZ7QbijPX8UQV2CIA8A-BfLoYF0"
+
+    
 }
 ###
 POST http://localhost:3000/user/forgotPassword
@@ -77,7 +81,7 @@ POST http://localhost:3000/user/userProfil
 Content-Type: application/json
 
 {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzNzc5ZGJlZDkxZGE2NGIxZDhmYjRkYSIsIm5hbWUiOiJyYXllbiIsImxhc3ROYW1lIjoiaHJhcmgiLCJhZHJlc3MiOiJhemVhemVheiIsImRyaXZlckxpY2Vuc2UiOiIxMjM1NjQiLCJkZWxldnJlZE9uIjoiMjAyMi0xMS0xOFQxNDo1ODo0OC4wMDBaIiwibnVtYmVyIjo3NDU4LCJwYXNzd29yZCI6IiQyYiQxMCRERk1oektLRVNONjg3RHF4V0laWncuSlliSGpZUjlCTkdRMVpZUEZUNTZ6ZkloS3NoOG0vdSIsImVtYWlsIjoicmF5ZW5oYXJob3VyaTk5QGdtYWlsLmNvbSIsInZlcmlmaWVkIjp0cnVlLCJvdHAiOjg5ODksImNyZWF0ZWRBdCI6IjIwMjItMTEtMThUMTQ6NTk6MTAuNTIyWiIsInVwZGF0ZWRBdCI6IjIwMjItMTEtMThUMTQ6NTk6MzguMTE0WiIsIl9fdiI6MH0sImlhdCI6MTY2ODc4NDY4NiwiZXhwIjoxNjY4Nzg4Mjg2fQ.gMyuGlXUO5lkgTvUBGYEXvX_ThOv_AL4M3Wj9-8nKuA"
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY0MzgzMWU1NmVlOTZmODE1ZjllNDBjYiIsIm5hbWUiOiJSYXllbjEyIiwibGFzdE5hbWUiOiJIYXJob3VyaSIsImFkcmVzcyI6Ik1uaWhsYSIsImRyaXZlckxpY2Vuc2UiOiIxNDc4NTIzNjkiLCJkZWxldnJlZE9uIjoiMjAyMC0wMy0wOVQwMDowMDowMC4wMDBaIiwibnVtYmVyIjoxMjM0NTY3OCwicGFzc3dvcmQiOiIkMmIkMTAkYjZoS0dtbmxZMDFrSkViQXdqNVVtTy9ORGdHcjF4ZGdZUkUuSTFENnYyUjZNZW40enIucjYiLCJlbWFpbCI6InJheWVuaGFyaG91cmk5OUBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwib3RwIjo4OTg5LCJjYXJzIjpbXSwiY3JlYXRlZEF0IjoiMjAyMy0wNC0xM1QxNjo0NjoyOS4xMDZaIiwidXBkYXRlZEF0IjoiMjAyMy0wNC0xNFQwOTowMjowNi4wMzJaIiwiX192IjowfSwiaWF0IjoxNjgyNTUzNzUyLCJleHAiOjE2ODI1NTczNTJ9.0f2Ha7pTY_YLTn0p8uVMxeh-21YTZJUU2-9qKNcGBVY"
 }
 
 ###
@@ -92,12 +96,12 @@ POST http://localhost:3000/car/addNew
 Content-Type: application/json
 
 {
-    "brand" : "BMW",
+    "brand" : "Fiat",
     "type" : "naarash",
-    "numSerie" : "1232234562789223333322",
+    "numSerie" : "12322323333322",
     "fiscalPower" : 7,
     "numImmatriculation" : "123 TUN 4015",
-    "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzODI2MGU2Mzc5ZjY4ZjhiMDQwNTdlYyIsIm5hbWUiOiJyYXllbiIsImxhc3ROYW1lIjoiaGFyaG91cmkiLCJhZHJlc3MiOiJtbmlobGEiLCJkcml2ZXJMaWNlbnNlIjoiNjk2OTY5Njk2OSIsImRlbGV2cmVkT24iOiIyMDIyLTExLTIzVDE4OjUyOjAwLjAwMFoiLCJudW1iZXIiOjUzMzQ0NTExLCJwYXNzd29yZCI6IiQyYiQxMCQ5MHYxank1RmhlRW9Nb0k1ZGIuTGdlZjdBWWY2OGd5bzliYVB2QlRZb0htZVBDLmNkc1hFQyIsImVtYWlsIjoicmF5ZW5oYXJob3VyaTk5QGdtYWlsLmNvb20iLCJ2ZXJpZmllZCI6dHJ1ZSwib3RwIjo4OTg5LCJjYXJzIjpbIjYzODI2ZjJiMzc5ZjY4ZjhiMDQwNTdmYSIsIjYzODI3Nzc2Mzc5ZjY4ZjhiMDQwNTgwMSJdLCJjcmVhdGVkQXQiOiIyMDIyLTExLTI2VDE4OjU0OjMwLjE0NFoiLCJ1cGRhdGVkQXQiOiIyMDIyLTExLTI2VDIwOjMwOjQ2LjI5MFoiLCJfX3YiOjJ9LCJpYXQiOjE2Njk1NzQ4NDMsImV4cCI6MTY2OTU3ODQ0M30.IQZ-aAdM2o4_UMGWtbo9eR56bK8OQEBJ9gy-Xb7jEZg"
+    "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY0MzgzMWU1NmVlOTZmODE1ZjllNDBjYiIsIm5hbWUiOiJSYXllbjEyIiwibGFzdE5hbWUiOiJIYXJob3VyaSIsImFkcmVzcyI6Ik1uaWhsYSIsImRyaXZlckxpY2Vuc2UiOiIxNDc4NTIzNjkiLCJkZWxldnJlZE9uIjoiMjAyMC0wMy0wOVQwMDowMDowMC4wMDBaIiwibnVtYmVyIjoxMjM0NTY3OCwicGFzc3dvcmQiOiIkMmIkMTAkYjZoS0dtbmxZMDFrSkViQXdqNVVtTy9ORGdHcjF4ZGdZUkUuSTFENnYyUjZNZW40enIucjYiLCJlbWFpbCI6InJheWVuaGFyaG91cmk5OUBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwib3RwIjo4OTg5LCJjYXJzIjpbXSwiY3JlYXRlZEF0IjoiMjAyMy0wNC0xM1QxNjo0NjoyOS4xMDZaIiwidXBkYXRlZEF0IjoiMjAyMy0wNC0xNFQwOTowMjowNi4wMzJaIiwiX192IjowfSwiaWF0IjoxNjgxOTA0ODk2LCJleHAiOjE2ODE5MDg0OTZ9.JgfVkEVo4q8hc0wb0IzXNoiV_miZ8F_7Z9_CNxQ7D18"
 }
 
 ###
@@ -120,7 +124,7 @@ POST http://localhost:3000/car/allCars
 Content-Type: application/json
 
 {
-    "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzODYwNmQyNDMwNDA5NmEwNDRiODNiMiIsIm5hbWUiOiJyYXllbiIsImxhc3ROYW1lIjoiaGFyaG91cmkiLCJhZHJlc3MiOiJtbmlobGEiLCJkcml2ZXJMaWNlbnNlIjoiMTIzNDU2Nzg5OCIsImRlbGV2cmVkT24iOiIyMDIyLTExLTI5VDEzOjE4OjA5LjAwMFoiLCJudW1iZXIiOjUzMzQ0NTExLCJwYXNzd29yZCI6IiQyYiQxMCRSLjFLMzU1bWlNZ1F6dkVuZ3dVQngucTNpQ1FncWlJQ3FWaDVqSWlCNFViL0l1SEppRnJIYSIsImVtYWlsIjoicmF5ZW5AZG9tYWluLmNvbSIsInZlcmlmaWVkIjp0cnVlLCJvdHAiOjg5ODksImNhcnMiOlsiNjM4NjBlNzBiYWIzZTFkZjI4YzkwZWJiIiwiNjM4NjBlOTBiYWIzZTFkZjI4YzkwZWMyIl0sImNyZWF0ZWRBdCI6IjIwMjItMTEtMjlUMTM6MTk6MTQuMjU1WiIsInVwZGF0ZWRBdCI6IjIwMjItMTEtMjlUMTM6NTI6MTYuMDU4WiIsIl9fdiI6Mn0sImlhdCI6MTY2OTczNTYwNSwiZXhwIjoxNjY5NzM5MjA1fQ.DIfAIrSvbSwUZWk6YXX4MPl8LW9ZtLnIL7slTfEmcAo"
+    "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY0MzgzMWU1NmVlOTZmODE1ZjllNDBjYiIsIm5hbWUiOiJSYXllbjEyIiwibGFzdE5hbWUiOiJIYXJob3VyaSIsImFkcmVzcyI6Ik1uaWhsYSIsImRyaXZlckxpY2Vuc2UiOiIxNDc4NTIzNjkiLCJkZWxldnJlZE9uIjoiMjAyMC0wMy0wOVQwMDowMDowMC4wMDBaIiwibnVtYmVyIjoxMjM0NTY3OCwicGFzc3dvcmQiOiIkMmIkMTAkYjZoS0dtbmxZMDFrSkViQXdqNVVtTy9ORGdHcjF4ZGdZUkUuSTFENnYyUjZNZW40enIucjYiLCJlbWFpbCI6InJheWVuaGFyaG91cmk5OUBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwib3RwIjo4OTg5LCJjYXJzIjpbXSwiY3JlYXRlZEF0IjoiMjAyMy0wNC0xM1QxNjo0NjoyOS4xMDZaIiwidXBkYXRlZEF0IjoiMjAyMy0wNC0xNFQwOTowMjowNi4wMzJaIiwiX192IjowfSwiaWF0IjoxNjgyNjc4MDY3LCJleHAiOjE2ODI2ODE2Njd9.fKJk3aMeUTTXWk4InO5Z-eFqk-F7O8jTxaYdynRtmTY"
 }
 ###
 POST http://localhost:3000/insurance/addNew
@@ -132,7 +136,7 @@ Content-Type: application/json
     "agency" : "12321",
     "validityFrom":"12321",
     "validityTo":"12321",
-    "carId" : "637e49e8da8c0442e754d463"
+    "carId" : "643dbe9c5d831b98f40d95ec"
 }
 
 ###
@@ -140,7 +144,7 @@ POST http://localhost:3000/insurance/getAll
 Content-Type: application/json
 
 {
-    "cars": "63860e90bab3e1df28c90ec2"
+    "cars": "643dbe9c5d831b98f40d95ec"
 }
 
 ###

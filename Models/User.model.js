@@ -48,7 +48,12 @@ const userSchema = mongoose.Schema(
             type : Number,
             default : '8989'
         },
-        cars : [{type : Schema.Types.ObjectId, ref: "car"}]
+        cars : [{type : Schema.Types.ObjectId, ref: "car"}],
+        token: {
+            type: String,
+            required: true,
+        },
+       
         
     }, 
         {

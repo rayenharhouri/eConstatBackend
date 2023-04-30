@@ -28,15 +28,23 @@ export async function LogIn(req, res) {
     }
     const user = await User.findOne({ email: email })
     if (user && (await bcrypt.compare(password, user.password))) {
+      if(user.verified){
       dotenv.config()
+      user.token = jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, {
+        expiresIn: '1H',
+      })
       let token = new Token({
         userId: user._id,
         token: jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, {
           expiresIn: '1H',
         }),
       })
+      
 
       res.status(200).json({ message: 'login avec succeés', user, token })
+    } else{
+      res.status(403).send('user not verified')
+    }
     } else {
       res.status(400).json({ erreur: 'erreur' })
     }
@@ -128,8 +136,10 @@ export async function UpdateProfile(req, res) {
           },
         },
       )
-      console.log(user)
-      await res.status(200).send(user)
+      let newUser = await User.findOne({
+          email: Token.user.email 
+      })
+      return res.status(200).send(newUser)
     } catch (e) {
       return res.status(400).json({ error1: e })
     }
