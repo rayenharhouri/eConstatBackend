@@ -33,7 +33,7 @@ const InsuranceSchema = mongoose.Schema(
             type: String,
             required: true
         },
-        cars : {type : Schema.Types.ObjectId, ref: "car"}
+        car : {type : Schema.Types.ObjectId, ref: "car"}
     }, 
         {
             timestamps : true

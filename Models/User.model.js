@@ -51,7 +51,6 @@ const userSchema = mongoose.Schema(
         cars : [{type : Schema.Types.ObjectId, ref: "car"}],
         token: {
             type: String,
-            required: true,
         },
        
         

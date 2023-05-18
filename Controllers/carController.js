@@ -12,9 +12,12 @@ export async function addNewCar(req, res) {
     if (!(brand && type && numSerie && fiscalPower && numImmatriculation)) {
       res.status(400).json({ message: 'All Fields are required' })
     }
+    if(token) {
     token = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
     const userId = token.user._id
     const user = await UserModel.findById(userId)
+  
+    
     const existantCar = await Car.findOne({ numSerie })
     if (existantCar) {
       return res.status(409).send('Car Already exist')
@@ -34,6 +37,9 @@ export async function addNewCar(req, res) {
     user.cars.push(car._id)
     user.save()
     res.status(200).json({car : car})
+  } else {
+    res.status(400).json({message : "INVALID TOKEN"})
+  }
   } catch (err) {
     console.log(err)
   }
@@ -117,9 +123,9 @@ try {
 
     var response = {
       
-          car
+          user
       ,
-        user
+      car
       ,
   
         Insurance

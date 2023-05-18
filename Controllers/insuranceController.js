@@ -30,7 +30,7 @@ export async function addNewInsurance(req, res) {
       validityFrom,
       validityTo,
     })
-    insurance.cars = car
+    insurance.car = car
     insurance.save()
     res.send(insurance)
   } catch (err) {
@@ -40,13 +40,10 @@ export async function addNewInsurance(req, res) {
 
 export async function getInsurance (req, res) {
   var carId = req.body.cars
-  
-  
-  
   if (carId) {
     try {
       console.log(carId);
-      var Insurances = await InsuranceModel.findOne({cars : carId})
+      var Insurances = await InsuranceModel.findOne({car : carId})
         res.status(200).json({insurance : Insurances})
             
     } catch (e) {

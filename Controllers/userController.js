@@ -31,17 +31,12 @@ export async function LogIn(req, res) {
       if(user.verified){
       dotenv.config()
       user.token = jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, {
-        expiresIn: '1H',
-      })
-      let token = new Token({
-        userId: user._id,
-        token: jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, {
-          expiresIn: '1H',
-        }),
+        
       })
       
+      
 
-      res.status(200).json({ message: 'login avec succeés', user, token })
+      res.status(200).json({ message: 'login avec succeés', user })
     } else{
       res.status(403).send('user not verified')
     }

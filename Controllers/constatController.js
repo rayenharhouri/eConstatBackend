@@ -12,9 +12,11 @@ import InsuranceModel from "../Models/Insurance.model.js"
 
 export async function addNewConstat(req, res) {
     try {
-      var userA = req.body.UserA
-      var carA = req.body.CarA
       var InsuranceA = req.body.InsuranceA
+      var carA = req.body.CarA
+      var car = await CarModel.findById(carA)
+      console.log(car);
+      var userA = car.owner
       var carDamageA = req.body.CarDamageA
       
       const constat = await ConstatModel.create({
@@ -23,8 +25,6 @@ export async function addNewConstat(req, res) {
         InsuranceA : InsuranceA,
         CarDamageA : carDamageA
       })
-
-
       //carDamage.car = car
       //await carDamage.save()
       res.status(200).json({constat : constat})
@@ -75,7 +75,7 @@ export async function addNewConstat(req, res) {
     const user = await User.findOne({ email: req.body.email.toLowerCase() })
     var userId = user._id
     const constat = await ConstatModel.findOne({userId})
-    
+    console.log(constat);
 
       //sending mail
       await doSendConfirmationEmail(req.body.email,constat,user)
@@ -118,9 +118,7 @@ export async function addNewConstat(req, res) {
     var A_vFrom = InsuranceA.validityFrom
     var B_vFrom = InsuranceB.validityFrom
     var B_vTo = InsuranceB.validityTo
-    var A_vTo = InsuranceA.validityTo
-    console.log(B_brand);    
-    console.log(A_brand);    
+    var A_vTo = InsuranceA.validityTo  
     sendEmail({
       from: process.env.eConstat_Mail,
       to: B_userMail,
