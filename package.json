@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nodemon server.js"
   },
-  "author": "",
+  "author": "Rayen Harhouri",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",
